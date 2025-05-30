@@ -4,9 +4,9 @@
 
       <template
         v-for="(point, i) in points"
+        :key="i"
       >
         <rect
-          :key="i"
           :fill="mergedColor[0]"
           :x="point[0] - halfPointSideLength"
           :y="point[1] - halfPointSideLength"

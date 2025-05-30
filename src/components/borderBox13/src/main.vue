@@ -40,19 +40,26 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import autoResize from '../../../mixin/autoResize'
 
 import { deepMerge } from '@jiaminghi/charts/lib/util/index'
 
 import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
-export default {
+interface Data {
+  ref: string;
+  defaultColor: string[];
+  mergedColor: string[];
+}
+
+export default defineComponent({
   name: 'DvBorderBox13',
   mixins: [autoResize],
   props: {
     color: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => ([])
     },
     backgroundColor: {
@@ -60,35 +67,28 @@ export default {
       default: 'transparent'
     }
   },
-  data () {
+  data (): Data {
     return {
       ref: 'border-box-13',
-
       defaultColor: ['#6586ec', '#2cf7fe'],
-
       mergedColor: []
     }
   },
   watch: {
     color () {
-      const { mergeColor } = this
-
-      mergeColor()
+      this.mergeColor();
     }
   },
   methods: {
-    mergeColor () {
-      const { color, defaultColor } = this
-
-      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || [])
+    mergeColor (): void {
+      const { color, defaultColor } = this;
+      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || []) as string[];
     }
   },
-  mounted () {
-    const { mergeColor } = this
-
-    mergeColor()
+  mounted (): void {
+    this.mergeColor();
   }
-}
+})
 </script>
 
 <style lang="less">
