@@ -1,3 +1,4 @@
+import { App } from 'vue';
 /**
  * IMPORT COMPONENTS
  */
@@ -36,64 +37,67 @@ import decoration12 from './components/decoration12/index'
 // charts
 import charts from './components/charts/index'
 
-import activeRingChart from './components/activeRingChart'
-import capsuleChart from './components/capsuleChart'
+import activeRingChart from './components/activeRingChart/index'
+import capsuleChart from './components/capsuleChart/index'
 import waterLevelPond from './components/waterLevelPond/index'
 import percentPond from './components/percentPond/index'
-import flylineChart from './components/flylineChart'
-import flylineChartEnhanced from './components/flylineChartEnhanced'
-import conicalColumnChart from './components/conicalColumnChart'
-import digitalFlop from './components/digitalFlop'
+import flylineChart from './components/flylineChart/index'
+import flylineChartEnhanced from './components/flylineChartEnhanced/index'
+import conicalColumnChart from './components/conicalColumnChart/index'
+import digitalFlop from './components/digitalFlop/index'
 import scrollBoard from './components/scrollBoard/index'
 import scrollRankingBoard from './components/scrollRankingBoard/index'
 
-/**
- * USE COMPONENTS
- */
-export default function (Vue) {
-  Vue.use(fullScreenContainer)
-  Vue.use(loading)
+// Main plugin object
+const DataV = {
+  install: (app: App) => { // Add App type
+    // Register each component plugin
+    app.use(fullScreenContainer)
+    app.use(loading)
 
-  // border box
-  Vue.use(borderBox1)
-  Vue.use(borderBox2)
-  Vue.use(borderBox3)
-  Vue.use(borderBox4)
-  Vue.use(borderBox5)
-  Vue.use(borderBox6)
-  Vue.use(borderBox7)
-  Vue.use(borderBox8)
-  Vue.use(borderBox9)
-  Vue.use(borderBox10)
-  Vue.use(borderBox11)
-  Vue.use(borderBox12)
-  Vue.use(borderBox13)
+    // border box
+    app.use(borderBox1)
+    app.use(borderBox2)
+    app.use(borderBox3)
+    app.use(borderBox4)
+    app.use(borderBox5)
+    app.use(borderBox6)
+    app.use(borderBox7)
+    app.use(borderBox8)
+    app.use(borderBox9)
+    app.use(borderBox10)
+    app.use(borderBox11)
+    app.use(borderBox12)
+    app.use(borderBox13)
 
-  // decoration
-  Vue.use(decoration1)
-  Vue.use(decoration2)
-  Vue.use(decoration3)
-  Vue.use(decoration4)
-  Vue.use(decoration5)
-  Vue.use(decoration6)
-  Vue.use(decoration7)
-  Vue.use(decoration8)
-  Vue.use(decoration9)
-  Vue.use(decoration10)
-  Vue.use(decoration11)
-  Vue.use(decoration12)
+    // decoration
+    app.use(decoration1)
+    app.use(decoration2)
+    app.use(decoration3)
+    app.use(decoration4)
+    app.use(decoration5)
+    app.use(decoration6)
+    app.use(decoration7)
+    app.use(decoration8)
+    app.use(decoration9)
+    app.use(decoration10)
+    app.use(decoration11)
+    app.use(decoration12)
 
-  // charts
-  Vue.use(charts)
+    // charts
+    app.use(charts)
 
-  Vue.use(activeRingChart)
-  Vue.use(capsuleChart)
-  Vue.use(waterLevelPond)
-  Vue.use(percentPond)
-  Vue.use(flylineChart)
-  Vue.use(flylineChartEnhanced)
-  Vue.use(conicalColumnChart)
-  Vue.use(digitalFlop)
-  Vue.use(scrollBoard)
-  Vue.use(scrollRankingBoard)
-}
+    app.use(activeRingChart)
+    app.use(capsuleChart)
+    app.use(waterLevelPond)
+    app.use(percentPond)
+    app.use(flylineChart)
+    app.use(flylineChartEnhanced)
+    app.use(conicalColumnChart)
+    app.use(digitalFlop)
+    app.use(scrollBoard)
+    app.use(scrollRankingBoard)
+  }
+};
+
+export default DataV;

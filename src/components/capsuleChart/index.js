@@ -1,5 +1,6 @@
-import CapsuleChart from './src/main.vue'
-
-export default function (Vue) {
-  Vue.component(CapsuleChart.name, CapsuleChart)
-}
+import CapsuleChart from './src/main.vue';
+export default {
+  install: (app) => {
+    app.component(CapsuleChart.name, CapsuleChart);
+  }
+};

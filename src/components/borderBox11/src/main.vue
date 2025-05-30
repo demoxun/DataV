@@ -214,7 +214,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import autoResize from '../../../mixin/autoResize'
 import { uuid } from '../../../util/index'
 
@@ -224,12 +225,19 @@ import { deepClone } from '@jiaminghi/c-render/lib/plugin/util'
 
 import { fade } from '@jiaminghi/color'
 
-export default {
+interface Data {
+  ref: string;
+  filterId: string;
+  defaultColor: string[];
+  mergedColor: string[];
+}
+
+export default defineComponent({
   name: 'DvBorderBox11',
   mixins: [autoResize],
   props: {
     color: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => ([])
     },
     titleWidth: {
@@ -245,38 +253,31 @@ export default {
       default: 'transparent'
     }
   },
-  data () {
+  data (): Data {
     const id = uuid()
     return {
       ref: 'border-box-11',
       filterId: `border-box-11-filterId-${id}`,
-
       defaultColor: ['#8aaafb', '#1f33a2'],
-
       mergedColor: []
     }
   },
   watch: {
     color () {
-      const { mergeColor } = this
-
-      mergeColor()
+      this.mergeColor();
     }
   },
   methods: {
-    mergeColor () {
-      const { color, defaultColor } = this
-
-      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || [])
+    mergeColor (): void {
+      const { color, defaultColor } = this;
+      this.mergedColor = deepMerge(deepClone(defaultColor, true), color || []) as string[];
     },
     fade
   },
-  mounted () {
-    const { mergeColor } = this
-
-    mergeColor()
+  mounted (): void {
+    this.mergeColor();
   }
-}
+})
 </script>
 
 <style lang="less">
